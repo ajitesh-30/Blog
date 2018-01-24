@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html>
-{% block breadcrumb %}
-  <li class="breadcrumb-item active">Boards</li>
-{% endblock %}
 <head>
 	<title> BITWISE</title>
 <marquee>WELCOME TO CODE HUB</marquee>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'css/bootstap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 </style>
 <div class="header">
@@ -16,12 +18,13 @@
 <div class="row" >
 
 {% block content %}
- <table class="table">
+  <table class="table">
     <thead class="thead-inverse">
       <tr>
-        <th>Dashboard</th>
+        <th>Board</th>
         <th>Posts</th>
         <th>Topics</th>
+        <th>Last Post</th>
       </tr>
     </thead>
     <tbody>
@@ -38,5 +41,4 @@
       {% endfor %}
     </tbody>
   </table>
-</div>
 {% endblock %}

@@ -20,9 +20,9 @@ def new_topic(request,pk):
 	board = get_object_or_404(Board,pk=pk)
 	user = User.objects.first()
 	if request.method == 'POST':
-		form = NewTopicForm(Board,pk=pk)
+		form = NewTopicForm(request.POST)
 		if form.is_valid():
-			topic = form.save(commit=False)
+			topic = form.save()
 			return redirect('board_topics',pk=board.pk)
 	else:
 		form = NewTopicForm()
