@@ -1,14 +1,13 @@
-{% load static %}
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html>
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Boards</li>
+{% endblock %}
 <head>
 	<title> BITWISE</title>
 <marquee>WELCOME TO CODE HUB</marquee>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<link rel="stylesheet" href="{% static 'css/bootstap.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 </style>
 <div class="header">
@@ -16,25 +15,28 @@
 </div>
 <div class="row" >
 
-<h1>BITWISE</h1>
-<p>Want to become a programmer ... 
-<br>
-<br>
-<textarea placeholder="Post Queries" style="height: 100px;width: 450px;"></textarea>
-<br>
-<br>
-<input type="submit" name="query" style="height: 20px;width : 120px;">
-<br>
-<div class="blogs">
-	<div class="blog-1">
-		{% for board in boards %}
-			<h1>{{ board.name}}</h1><br>
-			<p>{{board.description}}<p><br>
-		{% endfor %}
-	</div>
-</div>
-</body>
-</html>
-
-
-
+{% block content %}
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Board</th>
+        <th>Posts</th>
+        <th>Topics</th>
+        <th>Last Post</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for board in boards %}
+        <tr>
+          <td>
+            <a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
+            <small class="text-muted d-block">{{ board.description }}</small>
+          </td>
+          <td class="align-middle">0</td>
+          <td class="align-middle">0</td>
+          <td></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
