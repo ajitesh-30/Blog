@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-
-from boards import views
+from django.contrib.auth import views as auth_views
+from accounts import views as account_views
+from boards import views as blog_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',views.home,name='home'),
-    url(r'^boards/(?P<pk>\d+)/$',views.board_topics,name='board_topics'),
-    url(r'^boards/(?P<pk>\d+)/new/$', views.new_topic, name='new_topic'),
+    url(r'^login/',auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    url(r'^signup/$',account_views.signup,name='signup'),
+    url(r'^logout/$',auth_views.LogoutView.as_view(),name='logout'),
+    url(r'^$',blog_views.home,name='home'),
+    url(r'^boards/(?P<pk>\d+)/$',blog_views.board_topics,name='board_topics'),
+    url(r'^boards/(?P<pk>\d+)/new/$', blog_views.new_topic, name='new_topic'),
 ]
