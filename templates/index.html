@@ -3,42 +3,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> BITWISE</title>
-<marquee>WELCOME TO CODE HUB</marquee>
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<link rel="stylesheet" href="{% static 'css/bootstap.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/bootstap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 </style>
-<div class="header">
-<center><h1>B.I.T.W.I.S.E</h1></center>
-</div>
-<div class="row" >
+<body>
 
 {% block content %}
-  <table class="table">
-    <thead class="thead-inverse">
-      <tr>
-        <th>Board</th>
-        <th>Posts</th>
-        <th>Topics</th>
-        <th>Last Post</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for board in boards %}
-        <tr>
-          <td>
-            <a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
-            <small class="text-muted d-block">{{ board.description }}</small>
-          </td>
-          <td class="align-middle">0</td>
-          <td class="align-middle">0</td>
-          <td></td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<br>
+<br>
+<br>
+
+{% for board in boards %}
+<div class="col-sm-6">
+       <h4 ><a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a></h4>
+        <small class="text-muted d-block">{{ board.description }}</small>
+        <br>
+  </div>
+            
+{% endfor %}
 {% endblock %}

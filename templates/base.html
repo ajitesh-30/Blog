@@ -13,7 +13,7 @@
 
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container">
-          <a class="navbar-brand" href="{% url 'index' %}">BITWISE BLOGS</a>
+          <a class="navbar-brand" href="{% url 'index' %}">BLOG-IT</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -24,6 +24,7 @@
             <a  href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ user.username }}
             </a>
+               ||
               <a href="{% url 'logout' %}">Log out</a>
             </div>
           </li>
@@ -34,18 +35,15 @@
           <a href="{% url 'signup' %}" class="btn btn-primary ml-2">Sign up</a>
         </form>
       {% endif %}
-    </div>
+    </div>  
         </div>
       </nav>
 
       <div class="container">
-        <ol class="breadcrumb my-4">
-          {% block breadcrumb %}
-          {% endblock %}
-        </ol>
         {% block content %}
         {% endblock %}
       </div>
+
     {% endblock body %}
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>

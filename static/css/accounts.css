@@ -1,5 +1,5 @@
 body {
-  background-image: url(C:/Users/user/Desktop/Programing/myproject/static/img/log.jpg);
+  background-image: url(../img/log.jpg);
 }
 
 .logo {
