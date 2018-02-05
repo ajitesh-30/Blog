@@ -4,18 +4,16 @@ from django.contrib.auth.models import User
 
 from .forms import NewTopicForm
 from .models import Board, Post,Topic
-from accounts.forms import PostForm
 
 def home(request):
     boards = Board.objects.all()
     return render(request, 'index.html', {'boards': boards})
 
-
 def board_topics(request, pk):
     board = get_object_or_404(Board, pk=pk)
     return render(request, 'topics.html', {'board': board})
 
-@login_required
+@login_required(login_url='/login/')
 def new_topic(request,pk):
     board = get_object_or_404(Board, pk=pk)
     user = User.objects.last()
