@@ -24,6 +24,17 @@
 <div class="col-sm-6">
        <h4 ><a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a></h4>
         <small class="text-muted d-block">{{ board.description }}</small>
+        <small class="text-muted d-block">Posts : {{ board.get_posts_count }}  Topics : {{ board.topics.count }}</small>
+        <small class="text-muted d-block">{{ board.description }}</small>
+        {% with post=board.get_last_post %}
+        {% if post %}
+          <small class="text-muted d-block">
+            <a href="{% url 'topic_posts' board.pk post.topic.pk %}">By {{ post.created_by.username }} at {{ post.created_at }}</a>
+          </small>
+        {% else %}
+          <em>No posts yet.</em>
+        {% endif %}
+        {% endwith %}
         <br>
   </div>
             
