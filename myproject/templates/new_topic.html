@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}<title>Start a New Topic</title>{% endblock %}
+
+{% block content %}
+<div class="container">
+  <ol class="breadcrumb my-4">
+     <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'board_topics' board.pk %}">{{ topic.board.name }}</a></li>
+  <li class="breadcrumb-item active">New Subject</li>
+  </ol>
+</div>
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    {% include 'includes/form.html' %}
+    <button type="submit" class="btn btn-success">Post</button>
+</form>
+{% endblock %}

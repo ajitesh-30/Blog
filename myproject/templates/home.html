@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>BLOG-IT</title>
+  </head>
+<body>
+
+{% block content %}
+ </h1> 
+ <h2>BLOGS</h2>
+{% for board in boards %}
+<div class="card">
+  <div class="card-header">
+    <a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      {{ board.description }}          
+      <footer class="blockquote-footer">Posts - {{ board.get_posts_count }} |
+           Topics -  {{ board.topics.count }}  <cite title="Source Title"></cite></footer>
+    </blockquote>
+  </div>
+
+   {% with post=board.get_last_post %}
+              <small>
+                Last Post  by --- 
+                <a href="{% url 'topic_posts' board.pk post.topic.pk %}">
+                  By {{ post.created_by.username }} at {{ post.created_at }}
+                </a>
+              </small>
+            {% endwith %}
+</div>
+{% endfor %}
+</body>
+{% endblock %}
+</html>
